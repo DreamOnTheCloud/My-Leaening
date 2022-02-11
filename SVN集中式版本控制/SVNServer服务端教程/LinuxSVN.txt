@@ -1,0 +1,52 @@
+安装yum install -y subversion
+
+创建版本目录 mkdir -p /var/svn/pepository
+
+cd  /var/svn/pepository
+
+在repository下创建具体项目
+1，mkdir   minute
+2，mkdir   test
+
+在具体项目下配置svn文件:svnadmin create /var/svn/reepository/minute
+
+配置好之后cd进入具体项目文件的conf目录下，有三个需要编辑的文档
+1，vi    passwd
+2，vi    svnserve.conf    realm = /var/svn/repository/minute
+3，vi    authz 
+ [/]
+admin = rw
+
+进入后 a 编辑模式  编辑完时候esc退出编辑模式   最后:x保存编辑
+
+
+
+
+启动svn服务(一定要在具体项目的上一级启动否则找不到主机)svnserve -d -r /var/svn/repository/
+ps aux |grep svnserve检查一下自己虚拟机的SVN服务有没有启动，启动的话是有两个进程
+
+
+杀死svn:killall svnserve
+
+客户端检出的时候直接svn://ip地址/具体项目即可
+
+卸载svn:  yum remove subversion
+
+防火墙操作
+开启防火墙端口：firewall-cmd --zone=public --add-port=9200/tcp --permanent
+命令含义：
+–zone #作用域
+–add-port=3690/tcp #添加端口，格式为：端口/通讯协议
+–permanent #永久生效，没有此参数重启后失效
+注意：添加端口后，必须用命令firewall-cmd --reload重新加载一遍才会生效
+关闭防火墙端口：firewall-cmd --zone=public --remove-port=3690/tcp --permanent
+
+查看防火墙状态:firewall-cmd --state
+关闭防火墙:systemctl stop firewalld.service
+启动防火墙：systemctl start firewalld
+开机启动：systemctl enable firewalld.service
+开机禁用：systemctl disable firewalld.service
+重新加载配置：firewall-cmd --reload
+查看开放的端口：firewall-cmd --list-ports
+
+08.141.164.144地址检出
