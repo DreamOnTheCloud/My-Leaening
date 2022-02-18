@@ -1,0 +1,59 @@
+
+
+DNS域名解析系统
+IP和域名的关系是一对多，通过域名访问网站时要通过DNS解析
+在hosts里面配置对应的IP加域名指向的话就直接可以跳过DNS解析
+从而加快网站的访问速度
+
+Windows方法:
+1，打开C:\Windows\System32\drivers\etc找到hosts文件编辑添加对应的IP + 域名
+2，刷新网络DNS缓存ipconfig /flushdns
+
+linux方法:
+/etc/hosts  vim编辑添加wq保存
+刷新DNS缓存
+sudo /etc/init.d/dns-clean start
+sudo /etc/init.d/networking restart
+
+
+gitHub配置:
+# Github Hosts
+# Update 20211204
+# domain: github.com
+140.82.114.4 github.com
+140.82.114.10 nodeload.github.com
+140.82.114.6 api.github.com
+140.82.114.10 codeload.github.com
+185.199.108.133 raw.github.com
+185.199.108.153 training.github.com
+185.199.108.153 assets-cdn.github.com
+185.199.108.153 documentcloud.github.com
+185.199.108.154 help.github.com
+
+# domain: githubstatus.com
+185.199.108.153 githubstatus.com
+
+# domain: fastly.net
+199.232.69.194 github.global.ssl.fastly.net
+
+# domain: githubusercontent.com
+185.199.108.133 raw.githubusercontent.com
+185.199.108.154 pkg-containers.githubusercontent.com
+185.199.108.133 cloud.githubusercontent.com
+185.199.108.133 gist.githubusercontent.com
+185.199.108.133 marketplace-screenshots.githubusercontent.com
+185.199.108.133 repository-images.githubusercontent.com
+185.199.108.133 user-images.githubusercontent.com
+185.199.108.133 desktop.githubusercontent.com
+185.199.108.133 avatars.githubusercontent.com
+185.199.108.133 avatars0.githubusercontent.com
+185.199.108.133 avatars1.githubusercontent.com
+185.199.108.133 avatars2.githubusercontent.com
+185.199.108.133 avatars3.githubusercontent.com
+185.199.108.133 avatars4.githubusercontent.com
+185.199.108.133 avatars5.githubusercontent.com
+185.199.108.133 avatars6.githubusercontent.com
+185.199.108.133 avatars7.githubusercontent.com
+185.199.108.133 avatars8.githubusercontent.com
+# End of the section
+
